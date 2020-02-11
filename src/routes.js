@@ -12,26 +12,49 @@ routes.get('/', (req, res) => {
 
 
 async function getCats() {
-  const { data } = await axios.get('https://cat-fact.herokuapp.com/facts/random?amount=3')
-  return JSON.stringify({chat:data.map(({ text }) => text )})
+  try {
+    const { data } = await axios.get('https://cat-fact.herokuapp.com/facts/random?amount=3')
+    return JSON.stringify({chat:data.map(({ text }) => text )})
+  }
+  catch (error){
+    console.error(error)
+  }
+
 };
 
 async function getTacos() {
-  const { data } = await axios.get('http://taco-randomizer.herokuapp.com/random?full-taco=true')
-  return data.recipe
+  try {  
+    const { data } = await axios.get('http://taco-randomizer.herokuapp.com/random?full-taco=true')
+    return data.recipe}
+  catch (error){
+    console.error(error)
+  }
+
 };
 
 async function getBeer() {
-  const { data } = await axios.get('https://api.punkapi.com/v2/beers/random?amount=1')
-  const nom=data[0].name;
-  const description=data[0].description;
-  return JSON.stringify({Bierre:{nom:nom,description:description}});
+  try {
+    const { data } = await axios.get('https://api.punkapi.com/v2/beers/random?amount=1')
+    const nom=data[0].name;
+    const description=data[0].description;
+    return JSON.stringify({Bierre:{nom:nom,description:description}});    
+  }
+  catch(error){
+    console.error(error)
+  }
+
 };
 
 async function getJoke() {
-  const { data } = await axios.get('https://sv443.net/jokeapi/v2/joke/Programming?type=single')
-  const theJoke = data.joke
-  return theJoke;
+  try{
+    const { data } = await axios.get('https://sv443.net/jokeapi/v2/joke/Programming?type=single')
+    const theJoke = data.joke
+    return theJoke;
+  }
+  catch (error){
+    console.error(error)
+  }
+
 };
 
 async function getFGES() {
